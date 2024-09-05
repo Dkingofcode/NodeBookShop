@@ -1,5 +1,5 @@
 const path = require('path');
-
+ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -50,7 +50,7 @@ const csrfProtection = csrf();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use(session({secret: 'password', resave: false, saveUninitialized: false, store: store }));
+app.use(session({ resave: false, saveUninitialized: false, store: store }));
 app.use(multer({ storage: filestorage, fileFilter: fileFilter }).single('image'))
 app.use(csrf());
 app.use(flash());
